@@ -7,43 +7,43 @@ document.addEventListener('DOMContentLoaded', () =>{
     const cardArray = [
         {
             name: 'Aang' ,
-            img: '../img/Aang.png'
+            img:'/images/Aang.png'
         },
         {
             name: 'Aang' ,
-            img: '../img/Aang.png'
+            img: 'images/Aang.png'
         },
         {
             name: 'Zuko' ,
-            img: '../img/Zuko.webp'
+            img: 'images/Zuko.webp'
         },
         {
             name: 'Zuko' ,
-            img: '../img/zuko.webp'
+            img: 'images/Zuko.webp'
         },
         {
             name: 'Katara' ,
-            img: '../img/katara.jpg' 
+            img: 'images/katara.jpg' 
         },
         {
             name: 'Katara' ,
-            img: '../img/katara.jpg'
+            img: 'images/katara.jpg'
         },
         {
             name: 'Sokka' ,
-            img: '../img/sokka.jpg'
+            img: 'images/sokka.jpg'
         },
         {
             name: 'Sokka' ,
-            img: '../img/sokka.jpg'
+            img: 'images/sokka.jpg'
         },
         {
             name: 'Toph' ,
-            img: '../img/Toph.jpg'
+            img: 'images/Toph.jpg'
         },
         {
             name: 'Toph' ,
-            img: '../img/Toph.jpg'
+            img: 'images/Toph.jpg'
         }
     ]
     //shuffles cards
@@ -59,14 +59,21 @@ document.addEventListener('DOMContentLoaded', () =>{
     function makeBoard() {
        for (let i = 0; i < cardArray.length; i++) {
            let match = document.createElement('img')
-       match.setAttribute('src', '../img/appa.png')
+       match.setAttribute('src', 'images/appa.png')
        match.setAttribute('data-id', i)
        match.addEventListener('click', flipCard)
         grid.appendChild(match)
        }
-       //looks for matches
+      
     }
+     //looks for matches
+    let score = 0 
+    let cardAmount = 10
+
+
      function checkForMatch() {
+         let scoreElem = document.querySelector("#wins")
+         let cardsElem = document.querySelector('#moves')
          let matches = document.querySelectorAll('img')
          const optionOneId = cardsChosenId[0]
          const optionTwoId = cardsChosenId[1]
@@ -74,16 +81,19 @@ document.addEventListener('DOMContentLoaded', () =>{
              alert('You have a match!')
              matches[optionOneId].classList.add("hidden")
              matches[optionTwoId].classList.add("hidden")
-             matchesWon.push(cardsChosen)
+             matchesWon.push(cardsChosen)  
+             scoreElem.innerHTML = score += 2
+             cardsElem.innerHTML = cardAmount -= 2
 
-         }else{
-             matches[optionOneId].setAttribute('src', '../img/appa.png')
-             matches[optionTwoId].setAttribute('src', '../img/appa.png')
+         }
+         else{
+             matches[optionOneId].setAttribute('src', 'images/appa.png')
+             matches[optionTwoId].setAttribute('src', 'images/appa.png')
              alert('Not a Match, Try Again!')
          }
          cardsChosen = []
          cardsChosenId = []
-         winningDisplay.textcontent = matchesWon.length
+         winningDisplay.textContent = matchesWon.length
          if (matchesWon.length === cardArray.length/2)
             alert('Hooray! You found all the matches!!')
      }
@@ -109,11 +119,15 @@ document.addEventListener('DOMContentLoaded', () =>{
  function reset() {
      location.reload()
  }
-
-//scoreboard
- let scoreBoard = i;
- let myPlays = 10;
- function newGame(){
-  myPlays -= 2//countdown by 2s
-  scoreBoard +=2  // each match would equal  10
- }
+ //scoreboard
+//  let
+//  let scoreBoard = 0;
+//  let myPlays = 10;
+//  function newGame(){
+//      if (scoreBoard === myPlays -2){
+//          return (scoreBoard +2)
+//      }
+//      if (myPlays === scoreBoard +2){
+//          return (myPlays -2)
+//      }
+//     }
